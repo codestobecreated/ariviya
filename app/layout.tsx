@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Ariviya – your one-stop destination for premium pet products and care essentials.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head suppressHydrationWarning>

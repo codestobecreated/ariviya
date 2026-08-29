@@ -37,11 +37,15 @@ export async function GET(
     }
     const buffer = Buffer.from(await res.arrayBuffer());
 
-    const dir = path.dirname(localPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    try {
+      const dir = path.dirname(localPath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(localPath, buffer);
+    } catch {
+      // Ignore read-only filesystem errors on serverless platforms
     }
-    fs.writeFileSync(localPath, buffer);
 
     const contentType = res.headers.get("content-type") || "image/jpeg";
     return new NextResponse(buffer, {
