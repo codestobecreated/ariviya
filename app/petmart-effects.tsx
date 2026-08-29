@@ -76,10 +76,81 @@ export default function PetmartEffects() {
     updateCountdown();
     const timer = window.setInterval(updateCountdown, 1000);
 
+    // Banner Slider Controls
+    const prevBtn = document.getElementById("bannerPrevBtn");
+    const nextBtn = document.getElementById("bannerNextBtn");
+    const slidesWrapper = document.getElementById("bannerSlidesWrapper");
+    const dots = Array.from(document.querySelectorAll<HTMLElement>("#bannerDots .dot"));
+    let bannerInterval: number | null = null;
+
+    if (slidesWrapper) {
+      const slides = Array.from(slidesWrapper.querySelectorAll<HTMLElement>(".banner-slide"));
+      let currentIndex = 0;
+
+      const goToSlide = (index: number) => {
+        currentIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          if (i === currentIndex) {
+            slide.classList.add("active");
+          } else {
+            slide.classList.remove("active");
+          }
+        });
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      };
+
+      const startAutoSlide = () => {
+        if (bannerInterval) window.clearInterval(bannerInterval);
+        bannerInterval = window.setInterval(() => {
+          goToSlide(currentIndex + 1);
+        }, 5000);
+      };
+
+      const stopAutoSlide = () => {
+        if (bannerInterval) {
+          window.clearInterval(bannerInterval);
+          bannerInterval = null;
+        }
+      };
+
+      const onPrevClick = () => {
+        goToSlide(currentIndex - 1);
+        startAutoSlide();
+      };
+
+      const onNextClick = () => {
+        goToSlide(currentIndex + 1);
+        startAutoSlide();
+      };
+
+      prevBtn?.addEventListener("click", onPrevClick);
+      nextBtn?.addEventListener("click", onNextClick);
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener("click", () => {
+          goToSlide(idx);
+          startAutoSlide();
+        });
+      });
+
+      const card = document.querySelector<HTMLElement>(".featured-banner-card");
+      card?.addEventListener("mouseenter", stopAutoSlide);
+      card?.addEventListener("mouseleave", startAutoSlide);
+
+      startAutoSlide();
+    }
+
     return () => {
       observer.disconnect();
       accordionButtons.forEach((button) => button.removeEventListener("click", onAccordionClick));
       window.clearInterval(timer);
+      if (bannerInterval) window.clearInterval(bannerInterval);
     };
   }, []);
 
