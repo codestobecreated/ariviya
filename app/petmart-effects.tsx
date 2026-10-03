@@ -146,11 +146,73 @@ export default function PetmartEffects() {
       startAutoSlide();
     }
 
+    // Main Hero Carousel Slider Controls (#carousel)
+    let carouselInterval: number | null = null;
+    const carouselEl = document.getElementById("carousel");
+    if (carouselEl) {
+      const items = Array.from(carouselEl.querySelectorAll<HTMLElement>(".carousel-item"));
+      const indicators = Array.from(carouselEl.querySelectorAll<HTMLElement>(".carousel-indicators li"));
+      const prevBtn = carouselEl.querySelector<HTMLElement>(".carousel-control[data-slide='prev'], .carousel-control.left");
+      const nextBtn = carouselEl.querySelector<HTMLElement>(".carousel-control[data-slide='next'], .carousel-control.right");
+      let currentIndex = 0;
+
+      const goToSlide = (index: number) => {
+        currentIndex = (index + items.length) % items.length;
+        items.forEach((item, i) => {
+          if (i === currentIndex) item.classList.add("active");
+          else item.classList.remove("active");
+        });
+        indicators.forEach((ind, i) => {
+          if (i === currentIndex) ind.classList.add("active");
+          else ind.classList.remove("active");
+        });
+      };
+
+      const startAuto = () => {
+        if (carouselInterval) window.clearInterval(carouselInterval);
+        carouselInterval = window.setInterval(() => {
+          goToSlide(currentIndex + 1);
+        }, 5000);
+      };
+
+      const stopAuto = () => {
+        if (carouselInterval) {
+          window.clearInterval(carouselInterval);
+          carouselInterval = null;
+        }
+      };
+
+      prevBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        goToSlide(currentIndex - 1);
+        startAuto();
+      });
+
+      nextBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        goToSlide(currentIndex + 1);
+        startAuto();
+      });
+
+      indicators.forEach((ind, idx) => {
+        ind.addEventListener("click", () => {
+          goToSlide(idx);
+          startAuto();
+        });
+      });
+
+      carouselEl.addEventListener("mouseenter", stopAuto);
+      carouselEl.addEventListener("mouseleave", startAuto);
+
+      startAuto();
+    }
+
     return () => {
       observer.disconnect();
       accordionButtons.forEach((button) => button.removeEventListener("click", onAccordionClick));
       window.clearInterval(timer);
       if (bannerInterval) window.clearInterval(bannerInterval);
+      if (carouselInterval) window.clearInterval(carouselInterval);
     };
   }, []);
 

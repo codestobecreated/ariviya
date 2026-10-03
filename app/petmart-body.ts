@@ -303,50 +303,71 @@ export const petmartHtml = `<!-- Preloader Start -->
 <!-- Header End -->
 
 <!-- Hero Section Start -->
-<div class="hero">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-xl-6">
-        <!-- Hero Contant Start -->
-        <div class="hero-content">
-          <!-- Section Title Start -->
-          <div class="section-title">
-            <span class="section-sub-title wow fadeInUp"
-              >Everything Your Pets Need Daily</span
-            >
-            <h1 class="text-anime-style-3" data-cursor="-opaque">
-              Save Up To 50% On Pet Essentials
-            </h1>
-            <p class="wow fadeInUp" data-wow-delay="0.2s">
-              Discover premium pet products including food, toys, grooming
-              essentials, and accessories designed to keep your pets healthy and
-              happy every day.
-            </p>
-          </div>
-          <!-- Section Title End -->
-
-          <!-- Hero Content Button Start -->
-          <div class="hero-content-btn wow fadeInUp" data-wow-delay="0.4s">
-            <a href="#" class="btn-default btn-border"><span>Shop Now</span></a>
-            <a href="#" class="btn-default"><span>Explore Collection</span></a>
-          </div>
-          <!-- Hero Content Button End -->
-        </div>
-        <!-- Hero Contant End -->
-      </div>
-
-      <div class="col-xl-6">
-        <!-- Hero Image Start -->
-        <div class="hero-image">
-          <figure>
-            <img src="/images/hero-image.png" alt="" />
-          </figure>
-        </div>
-        <!-- Hero Image End -->
-      </div>
-    </div>
+<section id="wrapper-top">     
+  <div id="carousel" data-ride="carousel" class="carousel slide" data-interval="5000" data-wrap="true" data-pause="hover" data-touch="true">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1" class=""></li>
+      <li data-target="#carousel" data-slide-to="2" class=""></li>
+    </ol>
+    <ul class="carousel-inner">
+      <li class="carousel-item active">          
+        <figure>
+          <a href="#">
+            <img src="/images/dog.webp" alt="sample-1" loading="lazy" width="1903" height="750">             
+          </a>              
+          <figcaption class="caption">                  
+            <div class="slide-text container">
+              <div class="slidertext1">Latest Arrivals</div>
+              <div class="slidertext2">Everything Your<br>Pet Needs<br>Today</div>
+              <a href="#products" class="sliderbutton btn btn-primary">Shop Now</a>
+            </div>
+          </figcaption>
+        </figure>          
+      </li>
+      <li class="carousel-item">          
+        <figure>
+          <a href="#">
+            <img src="/images/cat.webp" alt="sample-2" loading="lazy" width="1903" height="750">             
+          </a>              
+          <figcaption class="caption">                  
+            <div class="slide-text container">
+              <div class="slidertext1">Latest Arrivals</div>
+              <div class="slidertext2">Where Being Pet<br>Just The Best<br>Pet Shop</div>
+              <a href="#products" class="sliderbutton btn btn-primary">Shop Now</a>
+            </div>
+          </figcaption>
+        </figure>          
+      </li>
+      <li class="carousel-item">          
+        <figure>
+          <a href="#">
+            <img src="/images/cow.webp" alt="sample-3" loading="lazy" width="1903" height="750">             
+          </a>              
+          <figcaption class="caption">                  
+            <div class="slide-text container">
+              <div class="slidertext1">Latest Arrivals</div>
+              <div class="slidertext2">Delicious Meals<br>Your Furry<br>Friends</div>
+              <a href="#products" class="sliderbutton btn btn-primary">Shop Now</a>
+            </div>
+          </figcaption>
+        </figure>          
+      </li>
+    </ul>   
+    <div class="direction" aria-label="Carousel buttons">
+      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" aria-label="Previous">
+        <span class="icon-prev hidden-xs" aria-hidden="true">
+          <i class="material-icons"></i>
+        </span>
+      </a>
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next" aria-label="Next">
+        <span class="icon-next" aria-hidden="true">
+          <i class="material-icons"></i>
+        </span>
+      </a>
+    </div>    
   </div>
-</div>
+</section>
 <!-- Hero Section End -->
 
 <!-- Company Trust & About Family Section Start -->

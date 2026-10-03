@@ -8,7 +8,10 @@ export async function GET(
 ) {
   const { path: pathSegments } = await params;
   const fileName = pathSegments.join("/");
-  const localPath = path.join(process.cwd(), "public", "images", fileName);
+  let localPath = path.join(process.cwd(), "public", "images", fileName);
+  if (!fs.existsSync(localPath)) {
+    localPath = path.join(process.cwd(), "images", fileName);
+  }
 
   if (fs.existsSync(localPath)) {
     const fileBuffer = fs.readFileSync(localPath);

@@ -2627,4 +2627,454 @@ body {
     }
   }
 
+/* ==========================================================================
+   Playful Modern Hero Section (Match User Screenshot)
+   ========================================================================== */
+.hero-banner-playful {
+  position: relative;
+  background-color: #ECEEEF;
+  overflow: hidden;
+  padding: 60px 0 70px;
+  min-height: 520px;
+}
+
+/* Organic background blob shapes */
+.hero-bg-blob-left {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: #E2E5E8;
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-bg-blob-right {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  width: 380px;
+  height: 380px;
+  background: #E2E5E8;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-playful-slides-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  z-index: 3;
+}
+
+.hero-playful-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  transform: translateY(10px);
+}
+
+.hero-playful-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Left Content Typography */
+.hero-playful-subtitle {
+  color: #FF5722;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.hero-playful-title {
+  color: #111827;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  margin-bottom: 28px;
+}
+
+/* Purple Shop Now Pill Button */
+.hero-btn-purple-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #651FFF;
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  box-shadow: 0 10px 25px rgba(101, 31, 255, 0.35);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.hero-btn-purple-pill:hover {
+  background: #5311E2;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(101, 31, 255, 0.45);
+}
+
+/* Orange Discount Circle Badge */
+.hero-orange-badge {
+  position: absolute;
+  left: -20px;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 145px;
+  height: 145px;
+  background-color: #FF5722;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(255, 87, 34, 0.35);
+  z-index: 6;
+  padding: 10px;
+}
+
+.hero-orange-badge .badge-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 4px;
+  opacity: 0.95;
+}
+
+.hero-orange-badge .badge-val {
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Pet Image Display (Right Side) */
+.hero-pet-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  min-height: 400px;
+}
+
+.hero-pet-image {
+  max-height: 440px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 4;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+  transition: transform 0.6s ease;
+}
+
+/* Doodles */
+.hero-doodle-bowl {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 85px;
+  height: 85px;
+  z-index: 4;
+}
+
+.hero-doodle-paw {
+  position: absolute;
+  top: 30px;
+  left: 55%;
+  width: 32px;
+  height: 32px;
+  z-index: 4;
+}
+
+.hero-doodle-arc {
+  position: absolute;
+  top: 15px;
+  right: 32%;
+  width: 50px;
+  height: 50px;
+  z-index: 4;
+}
+
+.hero-doodle-yarn {
+  position: absolute;
+  bottom: 0px;
+  left: 48%;
+  width: 90px;
+  height: 90px;
+  z-index: 5;
+}
+
+/* Pagination Dots Container */
+.hero-playful-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 42%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-playful-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #D1D5DB;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   PrestaShop CoderPlace Hero Slider (#wrapper-top / #carousel)
+   ========================================================================== */
+#wrapper-top {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #ECEEEF;
+}
+
+#carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  min-height: 500px;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  transform: translateY(10px);
+  z-index: 1;
+}
+
+.carousel-item.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  z-index: 2;
+}
+
+.carousel-item figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 500px;
+}
+
+.carousel-item figure > a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.carousel-item figure img {
+  max-height: 460px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 4;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+}
+
+/* Slide Caption Overlay */
+.carousel-item .caption {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  pointer-events: none;
+}
+
+.slide-text {
+  pointer-events: auto;
+  max-width: 650px;
+  padding: 60px 15px;
+}
+
+.slidertext1 {
+  color: #FF5722;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.slidertext2 {
+  color: #111827;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  margin-bottom: 30px;
+}
+
+.sliderbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #651FFF !important;
+  color: #ffffff !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 14px 42px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: 0 10px 25px rgba(101, 31, 255, 0.35);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.sliderbutton:hover {
+  background: #5311E2 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(101, 31, 255, 0.45);
+}
+
+/* Indicators (Dots) */
+.carousel-indicators {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #D1D5DB;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.carousel-indicators li.active {
+  width: 42px;
+  border-radius: 20px;
+  background: #651FFF;
+  border-color: #651FFF;
+  box-shadow: 0 4px 12px rgba(101, 31, 255, 0.4);
+}
+
+/* Prev / Next Direction Arrows */
+.direction {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+
+.carousel-control {
+  pointer-events: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-control:hover {
+  background: #651FFF;
+  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(101, 31, 255, 0.4);
+}
+
+.carousel-control.left::before {
+  content: "‹";
+  font-size: 2.2rem;
+  line-height: 1;
+  font-weight: 300;
+  margin-top: -3px;
+}
+
+.carousel-control.right::before {
+  content: "›";
+  font-size: 2.2rem;
+  line-height: 1;
+  font-weight: 300;
+  margin-top: -3px;
+}
+
+@media (max-width: 991px) {
+  .slidertext2 {
+    font-size: 2.4rem;
+  }
+  .carousel-item figure > a {
+    position: relative;
+    width: 100%;
+  }
+}
+
 

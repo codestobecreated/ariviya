@@ -37,6 +37,12 @@ try {
   if (fs.existsSync(sampleSrc)) {
     fs.copyFileSync(sampleSrc, sampleDest);
   }
+
+  ["cat.webp", "cow.webp", "dog.webp"].forEach((img) => {
+    const s = path.join(process.cwd(), "images", img);
+    const d = path.join(process.cwd(), "public", "images", img);
+    if (fs.existsSync(s)) fs.copyFileSync(s, d);
+  });
 } catch (e) {
   console.error("Error copying images:", e);
 }
