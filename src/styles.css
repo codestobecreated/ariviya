@@ -1272,15 +1272,53 @@ nav a.active::after {
 .form-footer {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
+}
+
+.btn-whatsapp-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  border: 0;
+  box-shadow: 0 10px 24px -8px rgba(37, 211, 102, 0.6);
+}
+
+.btn-whatsapp-submit:hover {
+  background: linear-gradient(135deg, #28e06c 0%, #0f7a6e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -8px rgba(37, 211, 102, 0.75);
+}
+
+.whatsapp-btn-icon {
+  flex-shrink: 0;
+}
+
+.form-success-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .form-success {
   margin: 0;
-  color: var(--primary);
-  font-size: 14px;
+  color: #0d8a50;
+  font-size: 14.5px;
   font-weight: 700;
+}
+
+.whatsapp-fallback-link {
+  font-size: 13.5px;
+  color: #128c7e;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.whatsapp-fallback-link:hover {
+  color: #075e54;
 }
 
 /* ---------- CTA band (ref 1) ---------- */

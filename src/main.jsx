@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 import heroImage from '../hero.jpg';
+import careImage from '../care.png';
 
 const navItems = ['Home', 'About Us', 'Products', 'Why ariviyaa', 'Expo & Events', 'Resources', 'Contact Us'];
 
@@ -13,7 +14,7 @@ const images = {
   rangeFarm: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=420&q=80',
   rangePet: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=420&q=80',
   rangePoultry: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=420&q=80',
-  rangePersonal: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=420&q=80',
+  rangePersonal: careImage,
   eventOne: 'https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=500&q=80',
   eventTwo: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=500&q=80',
   eventThree: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=500&q=80',
@@ -72,7 +73,7 @@ const productRanges = [
   { name: 'Farm Product', image: images.rangeFarm, icon: 'drop' },
   { name: 'Pet Product', image: images.rangePet, icon: 'heart' },
   { name: 'Poultry & Farm', image: images.rangePoultry, icon: 'shield' },
-  { name: 'Personal Health Care', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=420&q=80', icon: 'sprout' },
+  { name: 'Personal Health Care', image: careImage, icon: 'sprout' },
 ];
 
 const aboutFacts = [
@@ -220,12 +221,18 @@ function ProductRange() {
     <section className="section lavender" id="resources">
       <div className="container">
         <div className="title-row">
-          <SectionTitle icon="cube" iconTone="solid" title="Our Product Range" text="Targeted hygiene & biosecurity for dairy, pets, poultry and homes" />
-          <a className="link-pill" href="#products">Explore All <LineIcon name="right" /></a>
+          <SectionTitle
+            icon="cube"
+            iconTone="solid"
+            eyebrow="Sector Solutions"
+            title={<>Tailored Solutions <span className="accent">Across Sectors</span></>}
+            text="Targeted hygiene & biosecurity formulations engineered for dairy, pets, poultry and personal care"
+          />
+          <a className="link-pill" href="#contact-us">Enquire Now <LineIcon name="right" /></a>
         </div>
         <div className="range-grid">
           {productRanges.map((item) => (
-            <a className="range-card" key={item.name} href="#products">
+            <a className="range-card" key={item.name} href="#contact-us" title={`Enquire about ${item.name}`}>
               <img src={item.image} alt={item.name} loading="lazy" />
               <div className="range-pill">
                 <span className="range-icon"><LineIcon name={item.icon} /></span>
@@ -532,12 +539,43 @@ function ProductVideo() {
 
 function EnquiryForm() {
   const [sent, setSent] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: connect to backend / email service
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const name = formData.get('name')?.toString().trim() || '';
+    const company = formData.get('company')?.toString().trim() || '';
+    const phone = formData.get('phone')?.toString().trim() || '';
+    const email = formData.get('email')?.toString().trim() || '';
+    const type = formData.get('type')?.toString().trim() || '';
+    const product = formData.get('product')?.toString().trim() || '';
+    const message = formData.get('message')?.toString().trim() || '';
+
+    const lines = [
+      '🌿 *New Enquiry - Ariviyaa Website*',
+      '━━━━━━━━━━━━━━━━━━━━━',
+      `👤 *Name:* ${name}`,
+      `📞 *Phone:* ${phone}`,
+    ];
+
+    if (company) lines.push(`🏢 *Farm / Organisation:* ${company}`);
+    if (email) lines.push(`✉️ *Email:* ${email}`);
+    if (type) lines.push(`🏷️ *Customer Type:* ${type}`);
+    if (product) lines.push(`📦 *Product Interest:* ${product}`);
+    if (message) lines.push(`💬 *Message:* ${message}`);
+    lines.push('━━━━━━━━━━━━━━━━━━━━━');
+
+    const text = encodeURIComponent(lines.join('\n'));
+    const targetUrl = `https://wa.me/917010105831?text=${text}`;
+
+    setWhatsappUrl(targetUrl);
     setSent(true);
-    event.currentTarget.reset();
+
+    // Open WhatsApp in a new tab
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -595,8 +633,27 @@ function EnquiryForm() {
             <textarea name="message" rows="4" placeholder="Herd size, location or what you need" />
           </label>
           <div className="form-footer full">
-            <button className="btn-pill" type="submit">Submit Enquiry</button>
-            {sent && <p className="form-success" role="status">Thank you! We'll contact you shortly.</p>}
+            <button className="btn-pill btn-whatsapp-submit" type="submit">
+              <svg className="whatsapp-btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67ZM8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.7C7.02 10.92 7.91 12.09 8.03 12.26C8.16 12.43 9.77 14.91 12.23 15.97C12.82 16.22 13.27 16.37 13.63 16.48C14.22 16.67 14.76 16.64 15.19 16.58C15.67 16.51 16.66 15.98 16.87 15.39C17.08 14.8 17.08 14.3 17.02 14.19C16.96 14.08 16.8 14.02 16.56 13.9C16.32 13.78 15.13 13.19 14.91 13.11C14.69 13.03 14.53 12.99 14.37 13.24C14.21 13.49 13.75 14.02 13.61 14.19C13.47 14.36 13.33 14.38 13.09 14.26C12.85 14.14 11.84 13.81 10.65 12.75C9.72 11.92 9.09 10.89 8.97 10.69C8.85 10.49 8.96 10.38 9.08 10.26C9.19 10.15 9.33 9.97 9.45 9.83C9.57 9.69 9.61 9.59 9.69 9.43C9.77 9.27 9.73 9.13 9.67 9.01C9.61 8.89 9.15 7.76 8.96 7.3C8.78 6.85 8.59 6.91 8.45 6.91C8.32 6.9 8.16 6.9 8.01 6.9" />
+              </svg>
+              <span>Submit via WhatsApp</span>
+            </button>
+            {sent && (
+              <div className="form-success-container">
+                <p className="form-success" role="status">✓ Opening WhatsApp to send your enquiry...</p>
+                {whatsappUrl && (
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whatsapp-fallback-link"
+                  >
+                    Didn't open? Click here to send via WhatsApp →
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </form>
       </div>
